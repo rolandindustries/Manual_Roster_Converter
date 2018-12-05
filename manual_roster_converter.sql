@@ -30,12 +30,12 @@ restrada@ixl.com
 
 create temp table manual_roster_data
 as
-	select schl."school name", std."first name", std."last name", std."student number", std."grade", std."username", std."e-mail", std."password", std_tch."teacher id"
+	select schl."school name", std."first name", std."last name", std."student number", std."grade", std."username", std."e-mail", std."password", std_tch."Teacher Username"
 	from test_students std
 	left join test_schools schl
 	on std."School ID"=schl."school id"
 	left join (
-		select enroll."student ID", group_concat(tch."teacher id", ';') as "teacher id"
+		select enroll."student ID", group_concat(tch."username", ';') as "Teacher Username"
 		from test_enrollments enroll
 		left join test_sections sct
 		on enroll."section id"=sct."section id"
